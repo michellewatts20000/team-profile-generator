@@ -27,7 +27,7 @@ const promptUser = () => {
   
   
   
-  // creates a readme
+  // creates a index.html page
   const init = () => {
     promptUser()
       .then((answers) => writeFileAsync('./dist/index.html', generateMarkdown(answers)))
