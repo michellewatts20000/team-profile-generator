@@ -46,6 +46,7 @@ const promptUser = () => {
             const email = answer.email
             const id = answer.id
             const git = answer.git
+            const role = "Manager"
             const teamMember = new Manager(name, id, email, git)
             teamMembers.push(teamMember)
             moreTeamMembers();
@@ -81,7 +82,14 @@ const moreTeamMembers = () => {
 const addMore = () => {
     console.log("You have said yes");
     console.log(teamMembers)
-    promptUser();
+    return inquirer
+    .prompt([{
+        type: 'list',
+        name: 'addMemberType',
+        message: 'Which type team member would you like to add?',
+        choices: ["Yes, add an engineer", "Yes, add an intern", "No, my team is complete"],
+    }, ])
+
 }
 
 // runs just before the file is written to map each object to this html snippit
@@ -91,8 +99,7 @@ const mapMembersCards = () => {
             return `<div class="card">   
         <div class="card-body">
           <h5 class="card-title">${data.name}</h5>
-          <p class="card-text">${data.role}</p>
-          <p class="card-text">${data}</p>
+          <p class="card-text">${data.getRole()}</p>
           <p class="card-text">${data.id}</p>
           <p class="card-text">${data.email}</p>
           <p class="card-text">${data.github}</p>
