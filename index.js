@@ -56,24 +56,24 @@ const promptUser = () => {
 
 
 const moreTeamMembers = () => {
-   
-    return inquirer
-        .prompt([{
-                type: 'list',
-                name: 'more',
-                message: 'Would you like to add more team members?',
-                choices: [
-                    "Yes",
-                    "No"
-                ],
-                validate: function (answer) {
-                   
-                    if (answer.more === "Yes") {
-                        return addMore();
-                    }
-                    return true
-                }
 
+    return inquirer
+        .prompt([
+
+            {
+                type: 'confirm',
+                name: 'addEmployee',
+                message: 'Would you like to add another employee?',
+                default: true,
+
+                validate: answer => {
+                    if (answer == true) {
+                        console.log('We will enter another person');
+                    } else {
+                        
+                        return true;
+                    }
+                }
             },
 
         ])
@@ -93,7 +93,6 @@ const moreTeamMembers = () => {
 const addMore = () => {
     console.log("You have said yes");
 
-} 
+}
 
 promptUser();
-
