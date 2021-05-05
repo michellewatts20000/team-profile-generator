@@ -54,6 +54,46 @@ const promptUser = () => {
 
 }
 
+const addEngineer = () => {
+    return inquirer
+        .prompt([{
+                type: 'input',
+                name: 'name',
+                message: 'What is the Engineers name?',
+
+            },
+            {
+                type: 'input',
+                name: 'email',
+                message: 'What is their email?',
+
+            },
+            {
+                type: 'input',
+                name: 'id',
+                message: 'What is their ID number?',
+
+            },
+            {
+                type: 'input',
+                name: 'git',
+                message: 'What is their GitHub?',
+
+            },
+        ])
+// make a constructor object from the subclass Manager
+        .then(function (answer) {
+            const name = answer.name
+            const email = answer.email
+            const id = answer.id
+            const git = answer.git
+            const teamMember = new Engineer(name, id, email, git)
+            teamMembers.push(teamMember)
+            moreTeamMembers();
+        });
+
+}
+
 // runs inquirer again and asks if the user wants to add another member
 const moreTeamMembers = () => {
     return inquirer
@@ -80,18 +120,31 @@ const moreTeamMembers = () => {
 
 // runs the next function for who they want to add to their project
 const addMore = () => {
-    console.log("You have said yes");
-    console.log(teamMembers)
-    promptUser();
-    // return inquirer
-    // .prompt([{
-    //     type: 'list',
-    //     name: 'addMemberType',
-    //     message: 'Which type team member would you like to add?',
-    //     choices: ["Yes, add an engineer", "Yes, add an intern", "No, my team is complete"],
-    // }, ])
+    // console.log("You have said yes");
+    // console.log(teamMembers)
+    // promptUser();
+    return inquirer
+    .prompt([{
+        type: 'list',
+        name: 'addMemberType',
+        message: 'Which type team member would you like to add?',
+        choices: ["Engineer", "Intern"],
+    }, ])
+    .then((answer) => {
+        if (answer.addMemberType === "Engineer") {
+            return addEngineer();
+        } else
+            mapMembersCards();
+            console.log(mapMembersCards);
+            writeFileAsync('index.html', generateMarkdown(mapMembersCards(teamMembers)))
+        console.log('Successfully wrote a index.html');
+    })
+    .catch((err) => console.error(err));
+};
 
-}
+
+
+
 
 // runs just before the file is written to map each object to this html snippit
 const mapMembersCards = () => {
