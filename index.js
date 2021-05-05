@@ -2,14 +2,13 @@ const inquirer = require('inquirer');
 const fs = require('fs');
 const Employee = require('./lib/Employee')
 const Engineer = require('./lib/Engineer')
+const Manager = require('./lib/Manager')
 const generateMarkdown = require('./lib/generateMarkdown')
 const util = require('util');
 const writeFileAsync = util.promisify(fs.writeFile);
 
 
 let teamMembers = [];
-
-
 
 // run inquirer questions
 const promptUser = () => {
@@ -38,8 +37,6 @@ const promptUser = () => {
                 message: 'What is their GitHub?',
 
             },
-
-
         ])
 
         .then(function (answer) {
@@ -47,7 +44,7 @@ const promptUser = () => {
             const email = answer.email
             const id = answer.id
             const git = answer.git
-            const teamMember = new Engineer(name, id, email, git)
+            const teamMember = new Manager(name, id, email, git)
             teamMembers.push(teamMember)
             moreTeamMembers();
         });
@@ -56,19 +53,19 @@ const promptUser = () => {
 
 
 const moreTeamMembers = () => {
-
     return inquirer
         .prompt([
-
             {
                 type: 'confirm',
-                name: 'addEmployee',
-                message: 'Would you like to add another employee?',
+                name: 'moreMembers',
+                message: 'Would you like to add another team member?',
                 default: true,
 
                 validate: answer => {
-                    if (answer == true) {
-                        console.log('We will enter another person');
+                    // const more = answer.moreMembers;
+                    console.log(answer);
+                    if (answer.moreMembers == true) {
+                        return console.log('We will enter another person');
                     } else {
                         
                         return true;
@@ -82,6 +79,7 @@ const moreTeamMembers = () => {
         .then((answers) => writeFileAsync('index.html', generateMarkdown(answers, teamMembers)))
         .then(() => {
             console.log('Successfully wrote a index.html');
+            
 
         })
         .catch((err) => console.error(err));
