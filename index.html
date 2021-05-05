@@ -11,25 +11,24 @@
     <div class="container">
       <div class="col-lg-9">
         <div class="card-deck">
-         <div class="card">   
+         () => {
+    console.log(teamMembers);
+    const mapCard = teamMembers.map(function (data) {
+        return `<div class="card">   
         <div class="card-body">
-          <h5 class="card-title">test</h5>
-          <p class="card-text">undefined</p>
-          <p class="card-text">[object Object]</p>
-          <p class="card-text">23</p>
-          <p class="card-text">watts.e.michelle@gmail.com</p>
-          <p class="card-text">michellewatts20000</p>
+          <h5 class="card-title">${data.name}</h5>
+          <p class="card-text">${data.getRole()}</p>
+          <p class="card-text">${data.id}</p>
+          <p class="card-text">${data.email}</p>
+          <p class="card-text">${data.Github()}</p>
         </div>
-      </div><div class="card">   
-        <div class="card-body">
-          <h5 class="card-title">Connie</h5>
-          <p class="card-text">undefined</p>
-          <p class="card-text">[object Object]</p>
-          <p class="card-text">56</p>
-          <p class="card-text">connie.tomagra@gmail.com</p>
-          <p class="card-text">condog60</p>
-        </div>
-      </div>
+      </div>`
+
+    });
+
+    return mapCard.join("")
+
+}
         </div>
       </div>
     </div>
