@@ -91,6 +91,8 @@ const mapMembersCards = () => {
             return `<div class="card">   
         <div class="card-body">
           <h5 class="card-title">${data.name}</h5>
+          <p class="card-text">${data.role}</p>
+          <p class="card-text">${data}</p>
           <p class="card-text">${data.id}</p>
           <p class="card-text">${data.email}</p>
           <p class="card-text">${data.github}</p>
