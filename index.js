@@ -1,8 +1,9 @@
 const inquirer = require('inquirer');
 const fs = require('fs');
 const Employee = require('./lib/Employee')
-const Engineer = require('./lib/Engineer')
 const Manager = require('./lib/Manager')
+const Engineer = require('./lib/Engineer')
+const Intern = require('./lib/Intern')
 const generateMarkdown = require('./lib/generateMarkdown')
 const util = require('util');
 const writeFileAsync = util.promisify(fs.writeFile);
@@ -54,43 +55,49 @@ const promptUser = () => {
 
 const moreTeamMembers = () => {
     return inquirer
-        .prompt([
-            {
-                type: 'confirm',
-                name: 'moreMembers',
-                message: 'Would you like to add another team member?',
-                default: true,
-
-                validate: answer => {
-                    // const more = answer.moreMembers;
-                    console.log(answer);
-                    if (answer.moreMembers == true) {
-                        return console.log('We will enter another person');
-                    } else {
-                        
-                        return true;
-                    }
-                }
-            },
-
-        ])
+        .prompt([{
+            type: 'confirm',
+            name: 'moreMembers',
+            message: 'Would you like to add another team member?',
+            default: true,
+        }, ])
 
 
-        .then((answers) => writeFileAsync('index.html', generateMarkdown(answers, teamMembers)))
-        .then(() => {
+        .then((answer) => {
+            if (answer.moreMembers === true) {
+                return addMore();
+            } else
+                mapMembersCards();
+            writeFileAsync('index.html', generateMarkdown(answer, teamMembers))
             console.log('Successfully wrote a index.html');
-            
-
         })
         .catch((err) => console.error(err));
-
-
 };
+
 
 
 const addMore = () => {
     console.log("You have said yes");
+    console.log(teamMembers)
+    promptUser();
+}
+
+
+const mapMembersCards = () => {
+    const mapCard = teamMembers.map(function (data) {
+            return `<div class="card">   
+        <div class="card-body">
+          <h5 class="card-title">${data}</h5>
+          <p class="card-text"></p>
+        </div>
+      </div>`
+       
+    });
+
+    console.log(mapCard)
 
 }
+
+
 
 promptUser();
