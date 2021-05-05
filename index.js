@@ -66,13 +66,13 @@ const moreTeamMembers = () => {
                     "Yes",
                     "No"
                 ],
-                // validate: function (answer) {
+                validate: function (answer) {
                    
-                //     if (answer.more === "Yes") {
-                //         return addMore();
-                //     }
-                //     return console.log(teamMembers)
-                // }
+                    if (answer.more === "Yes") {
+                        return addMore();
+                    }
+                    return true
+                }
 
             },
 
