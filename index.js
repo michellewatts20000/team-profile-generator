@@ -68,7 +68,8 @@ const moreTeamMembers = () => {
                 return addMore();
             } else
                 mapMembersCards();
-            writeFileAsync('index.html', generateMarkdown(answer, teamMembers))
+                console.log(mapMembersCards);
+            writeFileAsync('index.html', generateMarkdown(mapMembersCards))
             console.log('Successfully wrote a index.html');
         })
         .catch((err) => console.error(err));
@@ -84,17 +85,18 @@ const addMore = () => {
 
 
 const mapMembersCards = () => {
+    console.log(teamMembers);
     const mapCard = teamMembers.map(function (data) {
             return `<div class="card">   
         <div class="card-body">
-          <h5 class="card-title">${data}</h5>
-          <p class="card-text"></p>
+          <h5 class="card-title">${data.name}</h5>
+          <p class="card-text">${data.email}</p>
         </div>
       </div>`
        
     });
 
-    console.log(mapCard)
+    return mapCard.join("")
 
 }
 
