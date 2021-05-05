@@ -1,17 +1,18 @@
 const inquirer = require('inquirer');
 const fs = require('fs');
+const util = require('util');
+const writeFileAsync = util.promisify(fs.writeFile);
 const Employee = require('./lib/Employee')
 const Manager = require('./lib/Manager')
 const Engineer = require('./lib/Engineer')
 const Intern = require('./lib/Intern')
 const generateMarkdown = require('./lib/generateMarkdown')
-const util = require('util');
-const writeFileAsync = util.promisify(fs.writeFile);
 
 
+// where all the team members get stored
 let teamMembers = [];
 
-// run inquirer questions
+// ask the inital questions about the team manager
 const promptUser = () => {
     return inquirer
         .prompt([{
@@ -39,7 +40,7 @@ const promptUser = () => {
 
             },
         ])
-
+// make a constructor object from the subclass Manager
         .then(function (answer) {
             const name = answer.name
             const email = answer.email
@@ -52,7 +53,7 @@ const promptUser = () => {
 
 }
 
-
+// runs inquirer again and asks if the user wants to add another member
 const moreTeamMembers = () => {
     return inquirer
         .prompt([{
@@ -62,7 +63,7 @@ const moreTeamMembers = () => {
             default: true,
         }, ])
 
-
+// when the user is finished adding team members this runs
         .then((answer) => {
             if (answer.moreMembers === true) {
                 return addMore();
@@ -76,14 +77,14 @@ const moreTeamMembers = () => {
 };
 
 
-
+// runs the next function for who they want to add to their project
 const addMore = () => {
     console.log("You have said yes");
     console.log(teamMembers)
     promptUser();
 }
 
-
+// runs just before the file is written to map each object to this html snippit
 const mapMembersCards = () => {
     console.log(teamMembers);
     const mapCard = teamMembers.map(function (data) {
@@ -92,7 +93,7 @@ const mapMembersCards = () => {
           <h5 class="card-title">${data.name}</h5>
           <p class="card-text">${data.id}</p>
           <p class="card-text">${data.email}</p>
-          <p class="card-text">${data.git}</p>
+          <p class="card-text">${data.github}</p>
         </div>
       </div>`
        
@@ -103,5 +104,5 @@ const mapMembersCards = () => {
 }
 
 
-
+// kicks the whole thing off
 promptUser();
