@@ -24,17 +24,24 @@ const promptUser = () => {
                 message: 'What is the Manger`s name?',
                 validate: function (answer) {
                     if (answer.length < 1) {
-                      return console.log("You must enter a name.");
+                        return console.log("You must enter a name.");
                     }
                     return true;
-                  }
+                }
 
             },
             {
                 type: 'input',
                 name: 'phone',
                 message: 'What is the Manger`s phone number?',
-                
+                validate: idInput => {
+                    if (!isNaN(parseInt(idInput))) {
+                        return true;
+                    } else {
+                        console.log('Please enter numbers');
+                        return false;
+                    }
+                }
 
             },
             {
@@ -43,16 +50,24 @@ const promptUser = () => {
                 message: 'What is their email?',
                 validate: function (answer) {
                     if (answer.length < 1) {
-                      return console.log("You must enter an email.");
+                        return console.log("You must enter an email.");
                     }
                     return true;
-                  }
+                }
 
             },
             {
                 type: 'input',
                 name: 'id',
                 message: 'What is their ID number?',
+                validate: idInput => {
+                    if (!isNaN(parseInt(idInput))) {
+                        return true;
+                    } else {
+                        console.log('Please enter numbers');
+                        return false;
+                    }
+                }
 
             },
 
@@ -78,10 +93,10 @@ const addEngineer = () => {
                 message: 'What is the Engineer`s name?',
                 validate: function (answer) {
                     if (answer.length < 1) {
-                      return console.log("You must enter an name.");
+                        return console.log("You must enter an name.");
                     }
                     return true;
-                  }
+                }
 
             },
             {
@@ -90,17 +105,24 @@ const addEngineer = () => {
                 message: 'What is their email?',
                 validate: function (answer) {
                     if (answer.length < 1) {
-                      return console.log("You must enter an email.");
+                        return console.log("You must enter an email.");
                     }
                     return true;
-                  }
+                }
 
             },
             {
                 type: 'input',
                 name: 'id',
                 message: 'What is their ID number?',
-
+                validate: idInput => {
+                    if (!isNaN(parseInt(idInput))) {
+                        return true;
+                    } else {
+                        console.log('Please enter numbers');
+                        return false;
+                    }
+                }
             },
             {
                 type: 'input',
@@ -130,10 +152,10 @@ const addIntern = () => {
                 message: 'What is the Intern`s name?',
                 validate: function (answer) {
                     if (answer.length < 1) {
-                      return console.log("You must enter a name.");
+                        return console.log("You must enter a name.");
                     }
                     return true;
-                  }
+                }
 
             },
             {
@@ -142,23 +164,30 @@ const addIntern = () => {
                 message: 'What is their email?',
                 validate: function (answer) {
                     if (answer.length < 1) {
-                      return console.log("You must enter an email.");
+                        return console.log("You must enter an email.");
                     }
                     return true;
-                  }
+                }
 
             },
             {
                 type: 'input',
                 name: 'id',
                 message: 'What is their ID number?',
-
+                validate: idInput => {
+                    if (!isNaN(parseInt(idInput))) {
+                        return true;
+                    } else {
+                        console.log('Please enter numbers');
+                        return false;
+                    }
+                }
             },
             {
                 type: 'input',
                 name: 'school',
                 message: 'What school do they go to?',
-                
+
 
             },
         ])
@@ -216,7 +245,7 @@ const addMore = () => {
             } else
                 mapMembersCards();
             console.log(mapMembersCards);
-            writeFileAsync('./dist/index.html', generateMarkdown(mapMembersCards(managerMembers, engineerMembers, internMembers )))
+            writeFileAsync('./dist/index.html', generateMarkdown(mapMembersCards(managerMembers, engineerMembers, internMembers)))
             console.log('Successfully wrote a index.html');
         })
         .catch((err) => console.error(err));
