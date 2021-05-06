@@ -4,7 +4,7 @@
   <img src="https://img.shields.io/badge/License-MIT-yellow.svg"></a>
 
   ## Description
-  Generate a index.html page that displays the profiles of each member of you team
+  Generate an index.html page via the terminal that displays the profiles of each member of your team.
 
   ## Table of Contents
   - [Installation](#installation)
