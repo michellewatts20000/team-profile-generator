@@ -9,6 +9,7 @@
   ## Table of Contents
   - [Installation](#installation)
   - [Usage](#usage)
+  - [Screenshots](#screenshots)
   - [How to contribute](#contribute)
   - [Tests](#tests)
   - [License](#license)
@@ -20,11 +21,19 @@
   ## Usage
   run node index
 
+  ## Screenshots
+  
+  ![screenshot of generated html page](./src/img/screenshot.png)
+  ![screenshot of inquirer](./src/img/screenshot-2.png)
+
+
+
   ## Contribute
   They can email me on watts.e.michelle@gmail.com
 
   ## Tests 
 npm test
+
   ## License
 <a href="https://opensource.org/licenses/MIT">
 <img src="https://img.shields.io/badge/License-MIT-yellow.svg"></a>

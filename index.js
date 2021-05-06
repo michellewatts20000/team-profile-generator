@@ -219,8 +219,6 @@ const moreTeamMembers = () => {
             if (answer.moreMembers === true) {
                 return addMore();
             } else
-                mapMembersCards();
-            console.log(mapMembersCards);
             writeFileAsync('./dist/index.html', generateMarkdown(mapMembersCards(managerMembers, engineerMembers, internMembers)))
             console.log('Successfully wrote a index.html');
         })
@@ -243,8 +241,6 @@ const addMore = () => {
             } else if (answer.addMemberType === "Intern") {
                 return addIntern();
             } else
-                mapMembersCards();
-            console.log(mapMembersCards);
             writeFileAsync('./dist/index.html', generateMarkdown(mapMembersCards(managerMembers, engineerMembers, internMembers)))
             console.log('Successfully wrote a index.html');
         })
@@ -254,12 +250,13 @@ const addMore = () => {
 
 // runs just before the file is written to map each object to this html snippit
 const mapMembersCards = () => {
-    console.log(managerMembers);
     const managerMap = managerMembers.map(function (data) {
-        return `<div class="card">   
+        return `<div class="card">  
+        <div class="card-header text-white bg-info">
+        ${data.getRole()}
+       </div>  
         <div class="card-body">
-          <h5 class="card-title">${data.getRole()}</h5>
-          <p class="card-text">Name: ${data.name}</p>
+          <h5 class="card-title">${data.name}</h5>
           <p class="card-text">ID: ${data.id}</p>
           <p class="card-text">Office number: ${data.officeNumber}</p>
           <p class="card-text">Email: <a href="mailto:${data.email}">${data.email}</a></p>
@@ -271,12 +268,14 @@ const mapMembersCards = () => {
 
     const engineerMap = engineerMembers.map(function (data) {
         return `<div class="card">   
+        <div class="card-header text-white bg-danger">
+        ${data.getRole()}
+       </div>  
         <div class="card-body">
-          <h5 class="card-title">${data.getRole()}</h5>
-          <p class="card-text">Name: ${data.name}</p>
+          <h5 class="card-title">${data.name}</h5>
           <p class="card-text">ID: ${data.id}</p>
           <p class="card-text">Email: <a href="mailto:${data.email}">${data.email}</a></p>
-          <p class ="card-text"> GitHub: <a href="https://github.com/${data.getGithub()}"> 
+          <p class="card-text">GitHub: <a target="_blank" href="https://github.com/${data.getGithub()}"> 
           ${data.getGithub()}</a></p>
            <a href="mailto:${data.email}" class="btn btn-primary">Email</a>
         </div>
@@ -286,9 +285,11 @@ const mapMembersCards = () => {
 
     const internMap = internMembers.map(function (data) {
         return `<div class="card">   
+        <div class="card-header bg-warning">
+        ${data.getRole()}
+       </div>  
         <div class="card-body">
-          <h5 class="card-title">${data.getRole()}</h5>
-          <p class="card-text">Name: ${data.name}</p>
+          <h5 class="card-title">${data.name}</h5>
           <p class="card-text">ID: ${data.id}</p>
           <p class="card-text">School: ${data.getSchool()}</p>
           <p class="card-text">Email: <a href="mailto:${data.email}">${data.email}</a></p>
