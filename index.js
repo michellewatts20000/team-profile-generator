@@ -40,20 +40,15 @@ const promptUser = () => {
                 message: 'What is their ID number?',
 
             },
-            {
-                type: 'input',
-                name: 'git',
-                message: 'What is their GitHub username?',
 
-            },
         ])
         // make a constructor object from the subclass Manager
         .then(function (answer) {
             const name = answer.name
-            const email = answer.email
             const id = answer.id
-            const git = answer.git
-            const teamMember = new Manager(name, id, email, git)
+            const email = answer.email
+            const phone = answer.phone
+            const teamMember = new Manager(name, id, email, phone)
             teamMembers.push(teamMember)
             moreTeamMembers();
         });
@@ -197,6 +192,7 @@ const mapMembersCards = () => {
           <h5 class="card-title"> ${data.getRole()}</h5>
           <p class="card-text">Name: ${data.name}</p>
           <p class="card-text">ID: ${data.id}</p>
+          <p class="card-text">Phone: ${data.phone}</p>
           <p class="card-text">Email: <a href="mailto:${data.email}">${data.email}</a></p>
           <p class ="card-text"> GitHub: <a href="https://github.com/${data.github}"> 
           ${data.github}</a></p>
