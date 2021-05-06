@@ -8,7 +8,7 @@ const generateMarkdown = (mapMembersCards) =>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
   </head>
   <body>
-    <div class="jumbotron">
+    <div class="jumbotron bg-primary text-white">
       <h1 class="text-center">Team Profile Generator</h1>
     </div>
     <div class="container">
