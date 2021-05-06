@@ -5,11 +5,13 @@ const writeFileAsync = util.promisify(fs.writeFile);
 const Manager = require('./lib/Manager')
 const Engineer = require('./lib/Engineer')
 const Intern = require('./lib/Intern')
-const generateMarkdown = require('./lib/generateMarkdown')
+const generateMarkdown = require('./src/generateMarkdown')
 
 
 // where all the team members get stored
-let teamMembers = [];
+let managerMembers = [];
+let engineerMembers = [];
+let internMembers = [];
 
 
 
@@ -20,18 +22,31 @@ const promptUser = () => {
                 type: 'input',
                 name: 'name',
                 message: 'What is the Manger`s name?',
+                validate: function (answer) {
+                    if (answer.length < 1) {
+                      return console.log("You must enter a name.");
+                    }
+                    return true;
+                  }
 
             },
             {
                 type: 'input',
                 name: 'phone',
                 message: 'What is the Manger`s phone number?',
+                
 
             },
             {
                 type: 'input',
                 name: 'email',
                 message: 'What is their email?',
+                validate: function (answer) {
+                    if (answer.length < 1) {
+                      return console.log("You must enter an email.");
+                    }
+                    return true;
+                  }
 
             },
             {
@@ -49,7 +64,7 @@ const promptUser = () => {
             const email = answer.email
             const phone = answer.phone
             const teamMember = new Manager(name, id, email, phone)
-            teamMembers.push(teamMember)
+            managerMembers.push(teamMember)
             moreTeamMembers();
         });
 
@@ -61,12 +76,24 @@ const addEngineer = () => {
                 type: 'input',
                 name: 'name',
                 message: 'What is the Engineer`s name?',
+                validate: function (answer) {
+                    if (answer.length < 1) {
+                      return console.log("You must enter an name.");
+                    }
+                    return true;
+                  }
 
             },
             {
                 type: 'input',
                 name: 'email',
                 message: 'What is their email?',
+                validate: function (answer) {
+                    if (answer.length < 1) {
+                      return console.log("You must enter an email.");
+                    }
+                    return true;
+                  }
 
             },
             {
@@ -89,7 +116,7 @@ const addEngineer = () => {
             const id = answer.id
             const git = answer.git
             const teamMember = new Engineer(name, id, email, git)
-            teamMembers.push(teamMember)
+            engineerMembers.push(teamMember)
             moreTeamMembers();
         });
 
@@ -101,12 +128,24 @@ const addIntern = () => {
                 type: 'input',
                 name: 'name',
                 message: 'What is the Intern`s name?',
+                validate: function (answer) {
+                    if (answer.length < 1) {
+                      return console.log("You must enter a name.");
+                    }
+                    return true;
+                  }
 
             },
             {
                 type: 'input',
                 name: 'email',
                 message: 'What is their email?',
+                validate: function (answer) {
+                    if (answer.length < 1) {
+                      return console.log("You must enter an email.");
+                    }
+                    return true;
+                  }
 
             },
             {
@@ -119,6 +158,7 @@ const addIntern = () => {
                 type: 'input',
                 name: 'school',
                 message: 'What school do they go to?',
+                
 
             },
         ])
@@ -129,7 +169,7 @@ const addIntern = () => {
             const id = answer.id
             const school = answer.school
             const teamMember = new Intern(name, id, email, school)
-            teamMembers.push(teamMember)
+            internMembers.push(teamMember)
             moreTeamMembers();
         });
 
@@ -152,7 +192,7 @@ const moreTeamMembers = () => {
             } else
                 mapMembersCards();
             console.log(mapMembersCards);
-            writeFileAsync('./dist/index.html', generateMarkdown(mapMembersCards(teamMembers)))
+            writeFileAsync('./dist/index.html', generateMarkdown(mapMembersCards(managerMembers, engineerMembers, internMembers)))
             console.log('Successfully wrote a index.html');
         })
         .catch((err) => console.error(err));
@@ -176,7 +216,7 @@ const addMore = () => {
             } else
                 mapMembersCards();
             console.log(mapMembersCards);
-            writeFileAsync('./dist/index.html', generateMarkdown(mapMembersCards(teamMembers)))
+            writeFileAsync('./dist/index.html', generateMarkdown(mapMembersCards(managerMembers, engineerMembers, internMembers )))
             console.log('Successfully wrote a index.html');
         })
         .catch((err) => console.error(err));
@@ -185,25 +225,51 @@ const addMore = () => {
 
 // runs just before the file is written to map each object to this html snippit
 const mapMembersCards = () => {
-    console.log(teamMembers);
-    const mapCard = teamMembers.map(function (data) {
+    console.log(managerMembers);
+    const managerMap = managerMembers.map(function (data) {
         return `<div class="card">   
         <div class="card-body">
-          <h5 class="card-title"> ${data.getRole()}</h5>
+          <h5 class="card-title">${data.getRole()}</h5>
           <p class="card-text">Name: ${data.name}</p>
           <p class="card-text">ID: ${data.id}</p>
           <p class="card-text">Office number: ${data.officeNumber}</p>
-          <p class="card-text">School: ${data.school}</p>
           <p class="card-text">Email: <a href="mailto:${data.email}">${data.email}</a></p>
-          <p class ="card-text"> GitHub: <a href="https://github.com/${data.github}"> 
-          ${data.github}</a></p>
            <a href="mailto:${data.email}" class="btn btn-primary">Email</a>
-            <a href="https://github.com/${data.github}" target="_blank" class="btn btn-primary">GitHub</a>
         </div>
       </div>`
 
     });
 
+    const engineerMap = engineerMembers.map(function (data) {
+        return `<div class="card">   
+        <div class="card-body">
+          <h5 class="card-title">${data.getRole()}</h5>
+          <p class="card-text">Name: ${data.name}</p>
+          <p class="card-text">ID: ${data.id}</p>
+          <p class="card-text">Email: <a href="mailto:${data.email}">${data.email}</a></p>
+          <p class ="card-text"> GitHub: <a href="https://github.com/${data.getGithub()}"> 
+          ${data.getGithub()}</a></p>
+           <a href="mailto:${data.email}" class="btn btn-primary">Email</a>
+        </div>
+      </div>`
+
+    });
+
+    const internMap = internMembers.map(function (data) {
+        return `<div class="card">   
+        <div class="card-body">
+          <h5 class="card-title">${data.getRole()}</h5>
+          <p class="card-text">Name: ${data.name}</p>
+          <p class="card-text">ID: ${data.id}</p>
+          <p class="card-text">School: ${data.getSchool()}</p>
+          <p class="card-text">Email: <a href="mailto:${data.email}">${data.email}</a></p>
+           <a href="mailto:${data.email}" class="btn btn-primary">Email</a>
+        </div>
+      </div>`
+
+    });
+
+    const mapCard = [...managerMap, ...engineerMap, ...internMap];
     return mapCard.join("")
 
 }

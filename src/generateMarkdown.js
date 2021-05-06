@@ -12,7 +12,7 @@ const generateMarkdown = (mapMembersCards) =>
       <h1 class="text-center">Team Profile Generator</h1>
     </div>
     <div class="container">
-      <div class="col-lg-9">
+      <div class="col-lg-12">
         <div class="card-deck">
          ${mapMembersCards}
         </div>
