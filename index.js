@@ -253,7 +253,7 @@ const mapMembersCards = () => {
     const managerMap = managerMembers.map(function (data) {
         return `<div class="card">  
         <div class="card-header text-white bg-info">
-        ${data.getRole()}
+        <h3>${data.getRole()} <i class="fas fa-dog"></i><h3>
        </div>  
         <div class="card-body">
           <h5 class="card-title">${data.name}</h5>
@@ -269,7 +269,7 @@ const mapMembersCards = () => {
     const engineerMap = engineerMembers.map(function (data) {
         return `<div class="card">   
         <div class="card-header text-white bg-danger">
-        ${data.getRole()}
+        <h3>${data.getRole()} <i class="fas fa-crow"></i><h3>
        </div>  
         <div class="card-body">
           <h5 class="card-title">${data.name}</h5>
@@ -286,7 +286,7 @@ const mapMembersCards = () => {
     const internMap = internMembers.map(function (data) {
         return `<div class="card">   
         <div class="card-header bg-warning">
-        ${data.getRole()}
+        <h3>${data.getRole()} <i class="fas fa-fish"></i><h3>
        </div>  
         <div class="card-body">
           <h5 class="card-title">${data.name}</h5>
