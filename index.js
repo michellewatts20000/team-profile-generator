@@ -220,7 +220,7 @@ const moreTeamMembers = () => {
                 return addMore();
             } else
             writeFileAsync('./dist/index.html', generateMarkdown(mapMembersCards(managerMembers, engineerMembers, internMembers)))
-            console.log('Successfully wrote a index.html');
+            console.log('Successfully generated an index.html page');
         })
         .catch((err) => console.error(err));
 };
@@ -242,7 +242,7 @@ const addMore = () => {
                 return addIntern();
             } else
             writeFileAsync('./dist/index.html', generateMarkdown(mapMembersCards(managerMembers, engineerMembers, internMembers)))
-            console.log('Successfully wrote a index.html');
+            console.log('Successfully generated an index.html page');
         })
         .catch((err) => console.error(err));
 };
