@@ -189,11 +189,12 @@ const mapMembersCards = () => {
     const mapCard = teamMembers.map(function (data) {
         return `<div class="card">   
         <div class="card-body">
-          <h5 class="card-title">Name: ${data.name}</h5>
-          <p class="card-text">Role: ${data.getRole()}</p>
+          <h5 class="card-title"> ${data.getRole()}</h5>
+          <p class="card-text">Name: ${data.name}</p>
           <p class="card-text">ID: ${data.id}</p>
           <p class="card-text">Email: <a href="mailto:${data.email}">${data.email}</a></p>
-          <p class="card-text">GitHub: <a href="${data.github}">${data.github}</a></p>
+          < p class ="card-text"> GitHub: <a href="https://github.com/${data.github}"> 
+          ${data.github}</a></p>
         </div>
       </div>`
 
