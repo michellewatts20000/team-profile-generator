@@ -193,8 +193,10 @@ const mapMembersCards = () => {
           <p class="card-text">Name: ${data.name}</p>
           <p class="card-text">ID: ${data.id}</p>
           <p class="card-text">Email: <a href="mailto:${data.email}">${data.email}</a></p>
-          < p class ="card-text"> GitHub: <a href="https://github.com/${data.github}"> 
+          <p class ="card-text"> GitHub: <a href="https://github.com/${data.github}"> 
           ${data.github}</a></p>
+           <a href="mailto:${data.email}" class="btn btn-primary">Email</a>
+            <a href="https://github.com/${data.github}" target="_blank" class="btn btn-primary">GitHub</a>
         </div>
       </div>`
 
