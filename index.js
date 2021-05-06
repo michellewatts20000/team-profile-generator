@@ -24,6 +24,12 @@ const promptUser = () => {
             },
             {
                 type: 'input',
+                name: 'phone',
+                message: 'What is the Team Mangers phone number?',
+
+            },
+            {
+                type: 'input',
                 name: 'email',
                 message: 'What is their email?',
 
@@ -151,7 +157,7 @@ const moreTeamMembers = () => {
             } else
                 mapMembersCards();
             console.log(mapMembersCards);
-            writeFileAsync('index.html', generateMarkdown(mapMembersCards(teamMembers)))
+            writeFileAsync('./dist/index.html', generateMarkdown(mapMembersCards(teamMembers)))
             console.log('Successfully wrote a index.html');
         })
         .catch((err) => console.error(err));
@@ -175,7 +181,7 @@ const addMore = () => {
             } else
                 mapMembersCards();
             console.log(mapMembersCards);
-            writeFileAsync('index.html', generateMarkdown(mapMembersCards(teamMembers)))
+            writeFileAsync('./dist/index.html', generateMarkdown(mapMembersCards(teamMembers)))
             console.log('Successfully wrote a index.html');
         })
         .catch((err) => console.error(err));
