@@ -19,13 +19,13 @@ const promptUser = () => {
         .prompt([{
                 type: 'input',
                 name: 'name',
-                message: 'What is the Team Mangers name?',
+                message: 'What is the Manger`s name?',
 
             },
             {
                 type: 'input',
                 name: 'phone',
-                message: 'What is the Team Mangers phone number?',
+                message: 'What is the Manger`s phone number?',
 
             },
             {
@@ -78,7 +78,7 @@ const addEngineer = () => {
             {
                 type: 'input',
                 name: 'git',
-                message: 'What is their GitHub?',
+                message: 'What is their GitHub username?',
 
             },
         ])
@@ -117,8 +117,8 @@ const addIntern = () => {
             },
             {
                 type: 'input',
-                name: 'git',
-                message: 'What is their GitHub?',
+                name: 'school',
+                message: 'What school do they go to?',
 
             },
         ])
@@ -127,8 +127,8 @@ const addIntern = () => {
             const name = answer.name
             const email = answer.email
             const id = answer.id
-            const git = answer.git
-            const teamMember = new Intern(name, id, email, git)
+            const school = answer.school
+            const teamMember = new Intern(name, id, email, school)
             teamMembers.push(teamMember)
             moreTeamMembers();
         });
@@ -193,6 +193,7 @@ const mapMembersCards = () => {
           <p class="card-text">Name: ${data.name}</p>
           <p class="card-text">ID: ${data.id}</p>
           <p class="card-text">Office number: ${data.officeNumber}</p>
+          <p class="card-text">Office number: ${data.school}</p>
           <p class="card-text">Email: <a href="mailto:${data.email}">${data.email}</a></p>
           <p class ="card-text"> GitHub: <a href="https://github.com/${data.github}"> 
           ${data.github}</a></p>
