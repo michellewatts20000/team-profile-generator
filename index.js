@@ -31,7 +31,7 @@ const promptUser = () => {
             {
                 type: 'input',
                 name: 'phone',
-                message: 'What is the Manager`s office phone number?',
+                message: ({ name }) => `What is the ${name}'s phone number?`,
                 validate: idInput => {
                     if (!isNaN(parseInt(idInput))) {
                         return true;
@@ -45,7 +45,7 @@ const promptUser = () => {
             {
                 type: 'input',
                 name: 'email',
-                message: 'What is their email?',
+                message: ({ name }) => `What is ${name}'s email address?`,
                 validate: function (answer) {
                     if (answer.length < 1) {
                         return console.log("You must enter an email.");
@@ -57,7 +57,7 @@ const promptUser = () => {
             {
                 type: 'input',
                 name: 'id',
-                message: 'What is their ID number?',
+                message: ({ name }) => `What is ${name}'s ID number?`,
                 validate: idInput => {
                     if (!isNaN(parseInt(idInput))) {
                         return true;
@@ -101,7 +101,7 @@ const addEngineer = () => {
             {
                 type: 'input',
                 name: 'email',
-                message: 'What is their email?',
+                message: ({ name }) => `What is ${name}'s email address?`,
                 validate: function (answer) {
                     if (answer.length < 1) {
                         return console.log("You must enter an email.");
@@ -113,7 +113,7 @@ const addEngineer = () => {
             {
                 type: 'input',
                 name: 'id',
-                message: 'What is their ID number?',
+                message: ({ name }) => `What is ${name}'s ID number?`,
                 validate: idInput => {
                     if (!isNaN(parseInt(idInput))) {
                         return true;
@@ -126,7 +126,7 @@ const addEngineer = () => {
             {
                 type: 'input',
                 name: 'git',
-                message: 'What is their GitHub username?',
+                message: ({ name }) => `What is ${name}'s GitHub username?`,
 
             },
         ])
@@ -161,7 +161,7 @@ const addIntern = () => {
             {
                 type: 'input',
                 name: 'email',
-                message: 'What is their email?',
+                message: ({ name }) => `What is ${name}'s email address?`,
                 validate: function (answer) {
                     if (answer.length < 1) {
                         return console.log("You must enter an email.");
@@ -173,7 +173,7 @@ const addIntern = () => {
             {
                 type: 'input',
                 name: 'id',
-                message: 'What is their ID number?',
+                message: ({ name }) => `What is ${name}'s ID number?`,
                 validate: idInput => {
                     if (!isNaN(parseInt(idInput))) {
                         return true;
@@ -186,7 +186,7 @@ const addIntern = () => {
             {
                 type: 'input',
                 name: 'school',
-                message: 'What school do they go to?',
+                message: ({ name }) => `What school did ${name} go to?`,
 
 
             },
@@ -232,7 +232,7 @@ const mapMembersCards = () => {
     const managerMap = managerMembers.map(function (data) {
         return `<div class="card">  
         <div class="card-header text-white bg-info">
-        <h3>${data.getRole()} <i class="fas fa-dog"></i><h3>
+        <h3><i class="fas fa-dog"></i> ${data.getRole()}<h3>
        </div>  
         <div class="card-body">
           <h5 class="card-title">${data.name}</h5>
@@ -249,7 +249,7 @@ const mapMembersCards = () => {
     const engineerMap = engineerMembers.map(function (data) {
         return `<div class="card">   
         <div class="card-header text-white bg-danger">
-        <h3>${data.getRole()} <i class="fas fa-crow"></i><h3>
+        <h3><i class="fas fa-crow"></i> ${data.getRole()}<h3>
        </div>  
         <div class="card-body">
           <h5 class="card-title">${data.name}</h5>
@@ -267,7 +267,7 @@ const mapMembersCards = () => {
     const internMap = internMembers.map(function (data) {
         return `<div class="card">   
         <div class="card-header bg-warning">
-        <h3>${data.getRole()} <i class="fas fa-fish"></i><h3>
+        <h3><i class="fas fa-fish"></i> ${data.getRole()}<h3>
        </div>  
         <div class="card-body">
           <h5 class="card-title">${data.name}</h5>
