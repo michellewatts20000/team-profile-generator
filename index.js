@@ -13,9 +13,7 @@ let managerMembers = [];
 let engineerMembers = [];
 let internMembers = [];
 
-
-
-// ask the inital questions about the team manager
+// ask the inital questions about the team manager and adds the team manager to an array
 const promptUser = () => {
     return inquirer
         .prompt([{
@@ -85,6 +83,7 @@ const promptUser = () => {
 
 }
 
+// adds an engineer to the engineer array
 const addEngineer = () => {
     return inquirer
         .prompt([{
@@ -131,7 +130,7 @@ const addEngineer = () => {
 
             },
         ])
-        // make a constructor object from the subclass Manager
+        // make a constructor object from the subclass Engineer
         .then(function (answer) {
             const name = answer.name
             const email = answer.email
@@ -144,6 +143,7 @@ const addEngineer = () => {
 
 }
 
+// adds an intern to the intern array
 const addIntern = () => {
     return inquirer
         .prompt([{
@@ -191,7 +191,7 @@ const addIntern = () => {
 
             },
         ])
-        // make a constructor object from the subclass Manager
+        // make a constructor object from the subclass Intern
         .then(function (answer) {
             const name = answer.name
             const email = answer.email
@@ -204,7 +204,7 @@ const addIntern = () => {
 
 }
 
-// runs the next function for who they want to add to their project
+// user chooses who they want to add next, if anyone
 const addMore = () => {
     return inquirer
         .prompt([{
@@ -227,6 +227,7 @@ const addMore = () => {
 
 
 // runs just before the file is written to map each object to this html snippit
+// manager snippit
 const mapMembersCards = () => {
     const managerMap = managerMembers.map(function (data) {
         return `<div class="card">  
@@ -244,6 +245,7 @@ const mapMembersCards = () => {
 
     });
 
+    // engineer snippit
     const engineerMap = engineerMembers.map(function (data) {
         return `<div class="card">   
         <div class="card-header text-white bg-danger">
@@ -261,6 +263,7 @@ const mapMembersCards = () => {
 
     });
 
+    // intern snippet
     const internMap = internMembers.map(function (data) {
         return `<div class="card">   
         <div class="card-header bg-warning">
@@ -277,6 +280,7 @@ const mapMembersCards = () => {
 
     });
 
+    // combine all the arrays and then join them into one html chunck
     const mapCard = [...managerMap, ...engineerMap, ...internMap];
     return mapCard.join("")
 
