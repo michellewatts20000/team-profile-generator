@@ -21,7 +21,7 @@ const promptUser = () => {
         .prompt([{
                 type: 'input',
                 name: 'name',
-                message: 'What is the Manger`s name?',
+                message: 'What is the Manager`s name?',
                 validate: function (answer) {
                     if (answer.length < 1) {
                         return console.log("You must enter a name.");
@@ -33,7 +33,7 @@ const promptUser = () => {
             {
                 type: 'input',
                 name: 'phone',
-                message: 'What is the Manger`s phone number?',
+                message: 'What is the Manager`s office phone number?',
                 validate: idInput => {
                     if (!isNaN(parseInt(idInput))) {
                         return true;
@@ -80,7 +80,7 @@ const promptUser = () => {
             const phone = answer.phone
             const teamMember = new Manager(name, id, email, phone)
             managerMembers.push(teamMember)
-            moreTeamMembers();
+            addMore();
         });
 
 }
@@ -139,7 +139,7 @@ const addEngineer = () => {
             const git = answer.git
             const teamMember = new Engineer(name, id, email, git)
             engineerMembers.push(teamMember)
-            moreTeamMembers();
+            addMore();
         });
 
 }
@@ -199,32 +199,10 @@ const addIntern = () => {
             const school = answer.school
             const teamMember = new Intern(name, id, email, school)
             internMembers.push(teamMember)
-            moreTeamMembers();
+            addMore();
         });
 
 }
-
-// runs inquirer again and asks if the user wants to add another member
-const moreTeamMembers = () => {
-    return inquirer
-        .prompt([{
-            type: 'confirm',
-            name: 'moreMembers',
-            message: 'Would you like to add another team member?',
-            default: true,
-        }, ])
-
-        // when the user is finished adding team members this runs
-        .then((answer) => {
-            if (answer.moreMembers === true) {
-                return addMore();
-            } else
-            writeFileAsync('./dist/index.html', generateMarkdown(mapMembersCards(managerMembers, engineerMembers, internMembers)))
-            console.log('Successfully generated an index.html page');
-        })
-        .catch((err) => console.error(err));
-};
-
 
 // runs the next function for who they want to add to their project
 const addMore = () => {
@@ -232,8 +210,8 @@ const addMore = () => {
         .prompt([{
             type: 'list',
             name: 'addMemberType',
-            message: 'Which type team member would you like to add?',
-            choices: ["Engineer", "Intern"],
+            message: 'What type of team member would you like to add now?',
+            choices: ["Engineer", "Intern", "I'm done adding team members"],
         }, ])
         .then((answer) => {
             if (answer.addMemberType === "Engineer") {
