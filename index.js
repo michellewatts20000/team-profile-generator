@@ -255,7 +255,9 @@ const addMore = () => {
 // manager snippit
 const mapMembersCards = () => {
     const managerMap = managerMembers.map(function (data) {
-        return `<div class="card">  
+        return `
+        <div class="col-sm-6 col-md-6 col-lg-4 mb-3">
+        <div class="card">  
         <div class="card-header text-white bg-info">
         <h3><i class="fas fa-dog"></i> ${data.getRole()}<h3>
        </div>  
@@ -266,13 +268,16 @@ const mapMembersCards = () => {
           <p class="card-text">Email: <a href="mailto:${data.email}">${data.email}</a></p>
            <a href="mailto:${data.email}" class="btn btn-primary">Email</a>
         </div>
+      </div>
       </div>`
 
     });
 
     // engineer snippit
     const engineerMap = engineerMembers.map(function (data) {
-        return `<div class="card">   
+        return `
+        <div class="col-sm-6 col-md-6 col-lg-4 mb-3">
+        <div class="card">   
         <div class="card-header text-white bg-danger">
         <h3><i class="fas fa-crow"></i> ${data.getRole()}<h3>
        </div>  
@@ -284,13 +289,16 @@ const mapMembersCards = () => {
           ${data.getGithub()}</a></p>
            <a href="mailto:${data.email}" class="btn btn-primary">Email</a>
         </div>
+      </div>
       </div>`
 
     });
 
     // intern snippet
     const internMap = internMembers.map(function (data) {
-        return `<div class="card">   
+        return `
+        <div class="col-sm-6 col-md-6 col-lg-4 mb-3">
+        <div class="card">   
         <div class="card-header bg-warning">
         <h3><i class="fas fa-fish"></i> ${data.getRole()}<h3>
        </div>  
@@ -301,6 +309,7 @@ const mapMembersCards = () => {
           <p class="card-text">Email: <a href="mailto:${data.email}">${data.email}</a></p>
            <a href="mailto:${data.email}" class="btn btn-primary">Email</a>
         </div>
+      </div>
       </div>`
 
     });
