@@ -12,6 +12,7 @@ const generateMarkdown = require('./src/generateMarkdown')
 let managerMembers = [];
 let engineerMembers = [];
 let internMembers = [];
+let allIds = [];
 
 // ask the inital questions about the team manager and adds the team manager to an array
 const promptUser = () => {
@@ -31,7 +32,9 @@ const promptUser = () => {
             {
                 type: 'input',
                 name: 'phone',
-                message: ({ name }) => `What is the ${name}'s phone number?`,
+                message: ({
+                    name
+                }) => `What is the ${name}'s phone number?`,
                 validate: idInput => {
                     if (!isNaN(parseInt(idInput))) {
                         return true;
@@ -45,7 +48,9 @@ const promptUser = () => {
             {
                 type: 'input',
                 name: 'email',
-                message: ({ name }) => `What is ${name}'s email address?`,
+                message: ({
+                    name
+                }) => `What is ${name}'s email address?`,
                 validate: function (answer) {
                     if (answer.length < 1) {
                         return console.log("You must enter an email.");
@@ -57,13 +62,16 @@ const promptUser = () => {
             {
                 type: 'input',
                 name: 'id',
-                message: ({ name }) => `What is ${name}'s ID number?`,
+                message: ({
+                    name
+                }) => `What is ${name}'s ID number?`,
                 validate: idInput => {
-                    if (!isNaN(parseInt(idInput))) {
-                        return true;
-                    } else {
-                        console.log('Please enter numbers');
+                    if (allIds.includes(idInput)) {
+                        console.log('Please enter a unique ID number');
                         return false;
+                    } else {
+                        return true
+
                     }
                 }
 
@@ -74,6 +82,7 @@ const promptUser = () => {
         .then(function (answer) {
             const name = answer.name
             const id = answer.id
+            allIds.push(id);
             const email = answer.email
             const phone = answer.phone
             const teamMember = new Manager(name, id, email, phone)
@@ -101,7 +110,9 @@ const addEngineer = () => {
             {
                 type: 'input',
                 name: 'email',
-                message: ({ name }) => `What is ${name}'s email address?`,
+                message: ({
+                    name
+                }) => `What is ${name}'s email address?`,
                 validate: function (answer) {
                     if (answer.length < 1) {
                         return console.log("You must enter an email.");
@@ -113,20 +124,25 @@ const addEngineer = () => {
             {
                 type: 'input',
                 name: 'id',
-                message: ({ name }) => `What is ${name}'s ID number?`,
+                message: ({
+                    name
+                }) => `What is ${name}'s ID number?`,
                 validate: idInput => {
-                    if (!isNaN(parseInt(idInput))) {
-                        return true;
-                    } else {
-                        console.log('Please enter numbers');
+                    if (allIds.includes(idInput)) {
+                        console.log('Please enter a unique ID number');
                         return false;
+                    } else {
+                        return true
+
                     }
                 }
             },
             {
                 type: 'input',
                 name: 'git',
-                message: ({ name }) => `What is ${name}'s GitHub username?`,
+                message: ({
+                    name
+                }) => `What is ${name}'s GitHub username?`,
 
             },
         ])
@@ -135,6 +151,7 @@ const addEngineer = () => {
             const name = answer.name
             const email = answer.email
             const id = answer.id
+            allIds.push(id);
             const git = answer.git
             const teamMember = new Engineer(name, id, email, git)
             engineerMembers.push(teamMember)
@@ -161,7 +178,9 @@ const addIntern = () => {
             {
                 type: 'input',
                 name: 'email',
-                message: ({ name }) => `What is ${name}'s email address?`,
+                message: ({
+                    name
+                }) => `What is ${name}'s email address?`,
                 validate: function (answer) {
                     if (answer.length < 1) {
                         return console.log("You must enter an email.");
@@ -173,20 +192,25 @@ const addIntern = () => {
             {
                 type: 'input',
                 name: 'id',
-                message: ({ name }) => `What is ${name}'s ID number?`,
+                message: ({
+                    name
+                }) => `What is ${name}'s ID number?`,
                 validate: idInput => {
-                    if (!isNaN(parseInt(idInput))) {
-                        return true;
-                    } else {
-                        console.log('Please enter numbers');
+                    if (allIds.includes(idInput)) {
+                        console.log('Please enter a unique ID number');
                         return false;
+                    } else {
+                        return true
+
                     }
                 }
             },
             {
                 type: 'input',
                 name: 'school',
-                message: ({ name }) => `What school did ${name} go to?`,
+                message: ({
+                    name
+                }) => `What school does ${name} go to?`,
 
 
             },
@@ -196,6 +220,7 @@ const addIntern = () => {
             const name = answer.name
             const email = answer.email
             const id = answer.id
+            allIds.push(id);
             const school = answer.school
             const teamMember = new Intern(name, id, email, school)
             internMembers.push(teamMember)
@@ -219,7 +244,7 @@ const addMore = () => {
             } else if (answer.addMemberType === "Intern") {
                 return addIntern();
             } else
-            writeFileAsync('./dist/index.html', generateMarkdown(mapMembersCards(managerMembers, engineerMembers, internMembers)))
+                writeFileAsync('./dist/index.html', generateMarkdown(mapMembersCards(managerMembers, engineerMembers, internMembers)))
             console.log('Successfully generated an index.html page');
         })
         .catch((err) => console.error(err));
