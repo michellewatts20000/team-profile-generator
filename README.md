@@ -16,23 +16,21 @@
   - [Questions](#questions)
 
   ## Installation
-  npm i
+  run 'npm i'
 
   ## Usage
-  run node index
+  run 'node index'
 
   ## Screenshots
   
   ![screenshot of generated html page](./src/img/screenshot.png)
   ![screenshot of inquirer](./src/img/screenshot-2.png)
 
-
-
   ## Contribute
   They can email me on watts.e.michelle@gmail.com
 
   ## Tests 
-npm test
+run 'npm test'
 
   ## License
 <a href="https://opensource.org/licenses/MIT">
