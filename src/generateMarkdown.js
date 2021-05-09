@@ -2,7 +2,6 @@
 const generateMarkdown = (mapMembersCards) =>
 
   `<!DOCTYPE html>
-  <html>
   <head>
     <title>Team Profile Generator</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
@@ -40,7 +39,6 @@ const generateMarkdown = (mapMembersCards) =>
     </div>
   </body>
   </html>
-
 `;
 
 module.exports = generateMarkdown;
