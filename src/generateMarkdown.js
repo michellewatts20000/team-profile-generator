@@ -29,10 +29,13 @@ const generateMarkdown = (mapMembersCards) =>
       <h1 class="text-center">Team Profile Generator</h1>
     </div>
     <div class="container">
-        <div class="card-deck">
+      <div class="card-deck">
+        <div class="row justify-content-center">
         
          ${mapMembersCards}
+
         </div>
+      </div>
       
     </div>
   </body>
