@@ -19,7 +19,7 @@
   run 'npm i'
 
   ## Usage
-  run 'node index' - generated index.html will be saved in your dist folder.
+  run 'node index' - answer all the questions and a generated index.html will be saved in your dist folder.
 
   ## Screenshots
   
