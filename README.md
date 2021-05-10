@@ -19,7 +19,7 @@
   run 'npm i'
 
   ## Usage
-  run 'node index'
+  run 'node index' - generated index.html will be saved in your dist folder.
 
   ## Screenshots
   
